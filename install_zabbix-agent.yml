@@ -1,4 +1,4 @@
-- hosts: zabbix_agent_nodes
+- hosts: zabbix-agent_nodes
   vars_files:
     - "vars/zabbix-agent.yml"
   roles:
