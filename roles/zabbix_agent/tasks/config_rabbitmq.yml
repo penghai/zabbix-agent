@@ -1,0 +1,18 @@
+
+- name: copy rabbitmq_status directory
+  copy:
+    src: zabbix_agentd.d/rabbitmq_status 
+    dest: /etc/zabbix/zabbix_agentd.d/
+    directory_mode: yes
+    mode: '0755'
+
+- name: copy userparameter_rabbitmq.conf
+  copy:
+    src: zabbix_agentd.d/userparameter_rabbitmq.conf
+    dest: /etc/zabbix/zabbix_agentd.d/userparameter_rabbitmq.conf
+
+- name: copy rab.auth
+  template:
+    src: rabbitmq/rab.auth
+    dest: /etc/zabbix/zabbix_agentd.d/rabbitmq_status/.rab.auth
+

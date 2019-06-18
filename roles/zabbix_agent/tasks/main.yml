@@ -1,0 +1,38 @@
+---
+# tasks file for zabbix_agent
+ 
+- include: install.yml
+
+- name: status httpd
+  shell: systemctl status httpd.service
+  ignore_errors: yes
+  register: apache_info
+
+- include: config_apache.yml
+  when: apache_info.rc == 0
+
+- include: config_linux.yml
+
+- name: status mariadb
+  shell: systemctl status mariadb.service
+  ignore_errors: yes
+  register: mysql_info
+
+- include: config_mysql.yml
+  when: mysql_info.rc == 0
+
+- name: status rabbitmq
+  shell: systemctl status rabbitmq-server.service
+  ignore_errors: yes
+  register: rabbitmq_info
+
+- include: config_rabbitmq.yml
+  when: rabbitmq_info.rc == 0
+
+- name: status memcached
+  shell: systemctl status memcached.service
+  ignore_errors: yes
+  register: memcached_info
+
+- include: config_memcached.yml
+  when: memcached_info.rc == 0

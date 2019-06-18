@@ -1,0 +1,18 @@
+
+- name: copy apache_status script
+  copy: 
+    src: zabbix_agentd.d/apache_status
+    dest: /etc/zabbix/zabbix_agentd.d/
+    mode: '0755'
+
+- name: copy userparameter_apache.conf
+  copy:
+    src: zabbix_agentd.d/userparameter_apache.conf
+    dest: /etc/zabbix/zabbix_agentd.d/userparameter_apache.conf
+
+- name: copy server-status.conf
+  template:
+    src: apache/server-status.conf
+    dest: /etc/httpd/conf.d/server-status.conf
+  notify: restart httpd
+

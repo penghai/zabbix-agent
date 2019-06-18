@@ -1,0 +1,17 @@
+
+- name: install package 
+  yum:
+    name: telnet
+    state: present
+
+- name: copy script zabbix_agentd.d/memcached_status/getMemcachedInfo.py
+  copy:
+    src: zabbix_agentd.d/memcached_status
+    dest: /etc/zabbix/zabbix_agentd.d/
+    directory_mode: yes
+    mode: '0755'
+
+- name: copy userparameter_memcached.conf
+  copy:
+    src: zabbix_agentd.d/userparameter_memcached.conf
+    dest: /etc/zabbix/zabbix_agentd.d/userparameter_memcached.conf

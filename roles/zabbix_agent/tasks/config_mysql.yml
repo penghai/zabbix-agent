@@ -1,0 +1,40 @@
+#- name: install percona repo 
+#  yum:
+#    name: https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+#    state: present
+
+- name: install package
+  yum:
+    name:
+      - php
+      - php-mysql
+#      - percona-zabbix-templates
+    state: present
+
+- name: cp get_mysql_stats.php 
+  copy:
+    src: mysql_script/ss_get_mysql_stats.php
+    dest: /var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php
+
+- name: cp get_mysql_stats_wrapper.sh 
+  copy:
+    src: mysql_script/get_mysql_stats_wrapper.sh
+    dest: /var/lib/zabbix/percona/scripts/get_mysql_stats_wrapper.sh
+    mode: '0755'
+
+- name: Set mysql username
+  replace:
+    path: /var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php
+    regexp: "mysql_user = 'root'"
+    replace: "mysql_user = '{{mysql_user}}'"
+
+- name: Set mysql password
+  replace:
+    path: /var/lib/zabbix/percona/scripts/ss_get_mysql_stats.php
+    regexp: "mysql_pass = 'root'"
+    replace: "mysql_pass = '{{mysql_password}}'"
+
+- name: cp userparameter_percona_mysql.conf
+  copy:
+    src: zabbix_agentd.d/userparameter_percona_mysql.conf
+    dest: /etc/zabbix/zabbix_agentd.d/userparameter_percona_mysql.conf
