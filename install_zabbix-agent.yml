@@ -2,4 +2,4 @@
   vars_files:
     - "vars/zabbix-agent.yml"
   roles:
-  - role: zabbix_agent
+  - role: zabbix-agent
