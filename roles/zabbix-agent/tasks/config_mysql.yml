@@ -1,14 +1,14 @@
-#- name: install percona repo 
-#  yum:
-#    name: https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-#    state: present
+- name: install percona repo 
+  yum:
+    name: https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+    state: present
 
 - name: install package
   yum:
     name:
       - php
       - php-mysql
-#      - percona-zabbix-templates
+      - percona-zabbix-templates
     state: present
 
 - name: cp get_mysql_stats.php 
