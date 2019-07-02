@@ -2,5 +2,3 @@ USERNAME={{rabbitmq_user}}
 PASSWORD={{rabbitmq_password}}
 CONF=/etc/zabbix/zabbix_agentd.conf
 PORT={{rabbitmq_port}}
-LOGLEVEL={{rabbitmq_loglevel}}
-LOGFILE=/var/log/zabbix/rabbitmq_zabbix.log

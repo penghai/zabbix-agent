@@ -1,7 +1,7 @@
 
 
 #zabbix_agent.conf
-zabbix_server: 172.16.1.14
+zabbix_server: 192.168.99.6
 
 #ss_get_mysql_stats.php
 mysql_user: root
@@ -11,4 +11,4 @@ mysql_password: root
 rabbitmq_user: admin
 rabbitmq_password: admin
 rabbitmq_port: 15672
-rabbitmq_loglevel: DEBUG
+rabbitmq_loglevel: INFO
