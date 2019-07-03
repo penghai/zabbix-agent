@@ -1,5 +1,10 @@
 
 
+#admin-openrc.sh
+openstack_vip: 192.168.99.10
+openstack_user: admin
+openstack_password: admin
+
 #zabbix_agent.conf
 zabbix_server: 192.168.99.6
 

@@ -1,0 +1,22 @@
+- name: copy script zabbix_agentd.d/openstack_status/openstack_hypervisor_status.sh
+  copy:
+    src: zabbix_agentd.d/openstack_status
+    dest: /etc/zabbix/zabbix_agentd.d/
+    directory_mode: yes
+    mode: '0755'
+
+- name: copy userparameter_openstack.conf
+  copy:
+    src: zabbix_agentd.d/userparameter_openstack.conf
+    dest: /etc/zabbix/zabbix_agentd.d/userparameter_openstack.conf
+
+- name: copy rab.auth
+  template:
+    src: openstack/admin-openrc.sh
+    dest: /usr/local/bin/.admin-openrc.sh
+
+- name: Execute the openstack command every 5 minutes
+  cron:
+    name: "Execute the openstack command every 5 minutes"
+    minute: "*/5"
+    job: "source /usr/local/bin/.admin-openrc.sh && timeout 10 openstack hypervisor stats show > /tmp/openstack_status 2>&1"

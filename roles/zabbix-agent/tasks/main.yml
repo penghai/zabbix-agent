@@ -37,6 +37,9 @@
 - include: config_memcached.yml
   when: memcached_info.rc == 0
 
+- include: config_openstack.yml
+  when: apache_info.rc == 0
+
 - name: restart httpd
   service:
     name: httpd
@@ -47,4 +50,5 @@
   service:
     name: zabbix-agent
     state: restarted
+
 
