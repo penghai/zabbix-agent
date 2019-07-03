@@ -1,0 +1,13 @@
+- name: copy script auto_del_30days_ago_log.sh file
+  copy:
+    src: auto_del_30days_ago_log.sh
+    dest: /usr/local/bin/auto_del_30days_ago_log.sh 
+    mode: '0755'
+
+- name: Execute the delete log script every day
+  cron:
+    name: "Execute the delete log script every day"
+    minute: "10"
+    hour: "0" 
+    job: "/usr/local/bin/auto_del_30days_ago_log.sh > /var/log/del_log.log 2>&1"
+
