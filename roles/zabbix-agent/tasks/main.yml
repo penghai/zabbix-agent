@@ -42,15 +42,15 @@
 
 - include: rm_log.yml
 
-#- name: restart httpd
-#  service:
-#    name: httpd
-#    state: restarted
-#  when: apache_info.rc == 0
+- name: restart httpd
+  service:
+    name: httpd
+    state: restarted
+  when: apache_info.rc == 0
 
-#- name: restart zabbix-agent
-#  service:
-#    name: zabbix-agent
-#    state: restarted
+- name: restart zabbix-agent
+  service:
+    name: zabbix-agent
+    state: restarted
 
 

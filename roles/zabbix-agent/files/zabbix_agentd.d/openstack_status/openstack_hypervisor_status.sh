@@ -17,7 +17,7 @@ case $field in
     cat $stats | grep -w  $field|awk -F "|" '{print $3}'|xargs echo;;
 'vcpus')
     vcpus=`cat $stats | grep -w  $field|awk -F "|" '{print $3}'|xargs echo`
-    echo $vcpus*8|bc
+    echo $vcpus*4|bc
     ;; 
 'vcpus_used')
     cat $stats | grep -w  $field|awk -F "|" '{print $3}'|xargs echo;;
