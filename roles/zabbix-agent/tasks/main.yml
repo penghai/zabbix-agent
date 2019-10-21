@@ -52,5 +52,3 @@
   service:
     name: zabbix-agent
     state: restarted
-
-

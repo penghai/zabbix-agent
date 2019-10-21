@@ -1,3 +1,9 @@
+- name: Add zabbix repository
+  template:
+    src: zabbix.repo
+    dest: /etc/yum.repos.d/zabbix.repo
+    owner: root
+    group: root
 
 - name: install common packages
   yum:
